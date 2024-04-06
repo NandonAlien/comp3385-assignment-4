@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('poster_path');
-            $table->string('poster_filename');
             $table->timestamps();
         });
     }
