@@ -1,5 +1,5 @@
 <script setup>
-
+  let Signed = Auth;
 </script>
 
 <template>
@@ -18,7 +18,14 @@
                         <RouterLink class="nav-link" :class="{ active: $route.path === '/about'}" to="/about">About</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" :class="{ active: $route.path === '/movies/create'}" to="/about">About</RouterLink>
+                        <RouterLink class="nav-link" :class="{ active: $route.path === '/movies/create'}" to="/movies/create">Add Movie</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" :class="{ active: $route.path === '/movies'}" to="/movies">Movies</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" :class="{ active: $route.path === '/login'}" to="/login">Login</RouterLink>
+                        <RouterLink class="nav-link" :class="{ active: $route.path === '/login'}" to="/login">Login</RouterLink>
                     </li>
                 </ul>
             </div>

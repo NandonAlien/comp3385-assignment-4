@@ -8,6 +8,7 @@ fetch("/api/v1/movies", {
  method: 'POST',
  body: form_data,
  headers: {
+'Authorization': `Bearer your-jwt-access-token`,
  'Accept': 'application/json'
  }
 })
@@ -30,6 +31,8 @@ console.log(error);
 <div class="form-group mb-3">
 <label for="title" class="form-label">Movie Title</label>
 <input type="text" name="title" class="form-control" />
+<label for="description" class="form-label">Description</label>
+<input type="text" name="description" class="form-control" />
 </div>
 </form>
 
