@@ -29,12 +29,9 @@ class MovieController extends Controller
         $base->title= $request->input('title');
         $base->description= $request ->input('description');
         $base->poster_path= $request ->input('poster_path');
-        if ($base->fails()){
-
-        }
         return response()->json([
             'message'=>"Movie created sucessfully",
             'movie'=>$base
-        ]);
+        ],201);
     }
     }
