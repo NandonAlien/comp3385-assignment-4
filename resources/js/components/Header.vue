@@ -1,5 +1,10 @@
 <script setup>
+import { ref} from "vue";
+
+const s = ref(localStorage.getItem('JWT')!==null);
+
 function Logout(){
+    console.log("check");
 fetch("/api/v1/logout", {
  method: 'POST',
  headers: {
@@ -10,6 +15,7 @@ fetch("/api/v1/logout", {
  return response.json();
 })
 .then(function (data) {
+localStorage.clear();
  console.log(data);
 })
 .catch(function (error){ 
@@ -40,8 +46,9 @@ console.log(error);
                         <RouterLink class="nav-link" :class="{ active: $route.path === '/movie'}" to="/movie">Movies</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" :class="{ active: $route.path === '/login'}" to="/login">Login</RouterLink>
-                        <button @submit.prevent="Logout">Logout</button>
+                        <button v-if="s" @click='Logout()'>Logout</button>
+                        <RouterLink  v-else class="nav-link" :class="{ active: $route.path === '/login'}" to="/login">Login</RouterLink>
+                       
                     </li>
                 </ul>
             </div>

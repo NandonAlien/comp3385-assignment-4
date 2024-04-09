@@ -1,18 +1,23 @@
 <script setup>
 
 function Login(){
-
+let Form = document.getElementById('Form');
+let form_data = new FormData(Form);
 
 fetch("/api/v1/login", {
  method: 'POST',
+ body: form_data,
  headers: {
- 'Accept': 'application/json'
+    'Authorization': `Bearer your-jwt-access-token`,
+     'Accept': 'application/json'
+ 
  }
 })
 .then(function (response) {
  return response.json();
 })
 .then(function (data) {
+localStorage.setItem('JWT',data.access_token);
  console.log(data);
 })
 .catch(function (error){ 
@@ -24,7 +29,7 @@ console.log(error);
 
 <template>
 
-<form @submit.prevent= 'Login' id = 'Login'>
+<form @submit.prevent= 'Login' id = 'Form'>
 <div class="form-group mb-3">
 <label for="email" class="form-label">Email Address</label>
 <input type="text" name="email" class="form-control" />

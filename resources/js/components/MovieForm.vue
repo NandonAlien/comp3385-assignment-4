@@ -9,6 +9,7 @@ fetch("/api/v1/movie", {
  method: 'POST',
  body: form_data,
  headers: {
+    'Authorization': `Bearer your-jwt-access-token`,
 
  'Accept': 'application/json'
  }
