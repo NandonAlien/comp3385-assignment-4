@@ -3,11 +3,15 @@ import { ref, onMounted} from "vue";
 
 let movies = ref([]);
 
+onMounted(()=>{
+
+movies=fetchMovies();
+});
+
 function fetchMovies(){
-    fetch("/api/v1/movies", {
+    fetch("/api/v1/movie", {
  method: 'GET',
- headers: {
-    'Authorization': `Bearer your-jwt-access-token`,
+ headers: { 
  'Accept': 'application/json'
  }
 })
@@ -21,20 +25,21 @@ function fetchMovies(){
 console.log(error);
 });
 
-onMounted(()=>{
 
-    movies.value=fetchMovies();
-});
 
 
 }
 
 </script>
-<template>
-    <div v-for="(movie) in movies ">
-        <div v-bind:movie="movie" v-bind:key="movie" v-bind:src="movie">
-            {{ movie.value }}
-        </div>
-
+<template  >
+<section class="movies" ref="movies">
+<div class="card" v-for="(movie,index) in  movies" :key="index">
+   <img class="card-img-top" src="movie.poster_path"  >Image</img>
+   <div class="card-body">
+    <h3 class="card-title">{{ movie.title }}</h3>
+    <p class="card-text">{{ movie.description }}</p>
     </div>
+    <div class="card-footer"></div>
+</div>
+</section>
 </template>

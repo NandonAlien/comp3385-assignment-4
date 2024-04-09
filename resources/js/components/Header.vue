@@ -1,5 +1,21 @@
 <script setup>
-  let Signed = Auth;
+function Logout(){
+fetch("/api/v1/logout", {
+ method: 'POST',
+ headers: {
+ 'Accept': 'application/json'
+ }
+})
+.then(function (response) {
+ return response.json();
+})
+.then(function (data) {
+ console.log(data);
+})
+.catch(function (error){ 
+console.log(error);
+});
+}
 </script>
 
 <template>
@@ -18,14 +34,14 @@
                         <RouterLink class="nav-link" :class="{ active: $route.path === '/about'}" to="/about">About</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" :class="{ active: $route.path === '/movies/create'}" to="/movies/create">Add Movie</RouterLink>
+                        <RouterLink class="nav-link" :class="{ active: $route.path === '/movie/create'}" to="/movie/create">Add Movie</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" :class="{ active: $route.path === '/movies'}" to="/movies">Movies</RouterLink>
+                        <RouterLink class="nav-link" :class="{ active: $route.path === '/movie'}" to="/movie">Movies</RouterLink>
                     </li>
                     <li class="nav-item">
                         <RouterLink class="nav-link" :class="{ active: $route.path === '/login'}" to="/login">Login</RouterLink>
-                        <RouterLink class="nav-link" :class="{ active: $route.path === '/login'}" to="/login">Login</RouterLink>
+                        <button @submit.prevent="Logout">Logout</button>
                     </li>
                 </ul>
             </div>

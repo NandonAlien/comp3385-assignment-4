@@ -24,12 +24,13 @@ console.log(error);
 
 <template>
 
-<form @submit.prevent= 'Login' id = 'Login'  enctype="multipart/form-data">
+<form @submit.prevent= 'Login' id = 'Login'>
 <div class="form-group mb-3">
 <label for="email" class="form-label">Email Address</label>
 <input type="text" name="email" class="form-control" />
-<label for="password" class="form-label">Description</label>
+<label for="password" class="form-label">Password</label>
 <input type="text" name="password" class="form-control" />
+<button  class="btn btn-Primary" type="submit"> Log in</button>
 </div>
 </form>
 

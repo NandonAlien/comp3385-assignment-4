@@ -11,10 +11,10 @@ class MovieController extends Controller
 {
     function index(){
 
-        $movie = Movie::all();
+        $movies = Movie::all();
 
         return response()->json([
-            'movies'=>$movie
+            'movies'=>$movies
         ]);
     }
 
@@ -22,13 +22,14 @@ class MovieController extends Controller
           $request->validate([
             'title'=> 'required|max:32',
             'description'=> 'required',
-            'poster_path' =>['required',File::types(['png','jpg','webp'])->min(1024)->max(12*1024)]
+            'poster_path' =>['required',File::types(['png','jpg','webp'])->min(180)->max(1080)]
         ]);
    
         $base = new Movie();
         $base->title= $request->input('title');
         $base->description= $request ->input('description');
-        $base->poster_path= $request ->input('poster_path');
+        $base->poster_path= $request ->poster_path-> storeAs('images',$request->poster_path->getClientOriginalName());
+        $base->save();
         return response()->json([
             'message'=>"Movie created sucessfully",
             'movie'=>$base

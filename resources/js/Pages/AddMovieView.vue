@@ -1,9 +1,9 @@
-<script>
+<script setup>
 
-import MovieForm from './MovieForm.vue'
+import MovieF from "../components/MovieForm.vue";
 
 </script>
 
 <template>
-    <MovieForm />    
+    <MovieF />    
 </template>
